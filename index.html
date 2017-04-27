@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="src/globle.css">
+    <link rel="stylesheet" type="text/css" href="src/hintPop.css">
+    <style type="text/css">
+        button{
+            width: 200px;
+            height: 44px;
+            display: block;
+            border:1px solid #ddd;
+            border-radius: 10px;
+            background: #fff;
+            margin:50px auto;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript" src="src/hint-pop.js"></script>
+</head>
+
+<body>
+    <button id='btn0'>show hint</button>
+    <button id="btn">show pop</button>
+</body>
+<script type="text/javascript">
+    hintPop.pop({
+        _content:"显示Pop弹框~"
+    });
+
+    hintPop.hint()
+
+    btn0.onclick = function(){
+        hintPop.hint("我是一个hint提示~~")
+    }
+
+    btn.onclick = function(){
+        hintPop.pop({
+            _title:'button title',
+            _content:"点击button点击button点击button点击button",
+            _confirm:function(){
+                console.log("点击button后 点击了确定");
+            },
+            _cancel:function(){
+                console.log("点击button后 点击了取消");
+            }
+        });
+    }
+</script>
+</html>

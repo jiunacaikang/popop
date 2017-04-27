@@ -1,6 +1,6 @@
 # hint-pop
 a hint-pop plugin
-使用方法 ：
+# 使用方法 ：
     hintPop.pop({
         _content:"显示Pop弹框~"
     });

@@ -1,5 +1,5 @@
 # hint-pop
-a hint-pop plugin  
+移动端 hint-pop plugin  
 
 使用方法：  
 ```javascript

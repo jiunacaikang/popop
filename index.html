@@ -15,20 +15,45 @@
             border-radius: 10px;
             background: #fff;
             margin:50px auto;
-            cursor: pointer;
+            background: #ddd;
+            box-shadow: 1px 1px 3px #555;
         }
     </style>
-    <script type="text/javascript" src="src/hintPop.js"></script>
 </head>
 
 <body>
     <button id='btn0'>show hint</button>
     <button id="btn">show pop</button>
 </body>
+<script type="text/javascript" src="src/hintPop.js"></script>   
 <script type="text/javascript">
-    hintPop.pop({
-        content:"显示Pop弹框~"
-    });
+    function isMobile() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    if(!isMobile()){
+        hintPop.pop({
+            content:"请切换为移动浏览器模式"
+        });
+    }else{
+        hintPop.pop({
+            content:"我是一个弹窗"
+        });
+    }
+    
 
     hintPop.hint();
 

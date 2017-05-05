@@ -27,7 +27,6 @@
             console.log("cancel");
         }
     };
-    var hintCon = '<div class="hint">hint show~</div>';          
     function showPop(opt){
         dftOpt = {
             title:opt&&opt.title||"操作提示",
@@ -54,8 +53,8 @@
                         +'</div>'
                     +'</div>';
         if($$("popBox")){
-            $$("popBox").className = "popBox";
             $$("popBox").style.display = "block";
+            $$("popBox").className = "popBox";
             $$("popBox").innerHTML = popCon;
         }else{
             var div = document.createElement("div");
@@ -66,44 +65,43 @@
         }
         bindClick(dftOpt);
     };
-    function popHide(){
-        $$("popBox").className += " hide";
-        setTimeout(function(){$$("popBox").style.display = 'none'}, 300);
-        if(this.id==="_confirm"){
+    function popHide(event){
+        if(event.target.id==="_confirm"){
             if(typeof(dftOpt.confirm)=="function"){
                 dftOpt.confirm();
             }
-        }else if(this.id==="_cancel"){
+        }else if(event.target.id==="_cancel"){
             if(typeof(dftOpt.cancel)=="function"){
                 dftOpt.cancel();
             }
+        }else{
+            return false;
         }
-        this.style.backgroundColor = dftOpt.bg;
+        $$("popBox").className += " hide";
+        setTimeout(function(){$$("popBox").style.display = 'none'}, 300);
+        event.target.style.backgroundColor = dftOpt.bg;
     };
-    function bindClick(opt){
-        $$("_confirm").addEventListener('touchstart', function(event){
-            $$("_confirm").style.backgroundColor = opt.activebg;
-            $$("_confirm").addEventListener('touchend', popHide);
+    function bindClick(opt){  
+        $$("popBox").addEventListener('touchstart', function(event){
+            if(event.target.id === "_confirm" || event.target.id === "_cancel"){
+                event.target.style.backgroundColor = opt.activebg;
+                $$("popBox").addEventListener('touchend', popHide);
+            }
         });
-        $$("_confirm").addEventListener('touchmove', function(event){
-            $$("_confirm").style.backgroundColor = opt.bg;
-            $$("_confirm").removeEventListener("touchend",popHide);
+        $$("popBox").addEventListener('touchmove', function(event){
+            if(event.target.id === "_confirm" || event.target.id === "_cancel"){
+                $$(event.target.id).style.backgroundColor = opt.bg;
+                $$("popBox").removeEventListener("touchend",popHide);
+            }
         });
-
-        $$("_cancel").addEventListener('touchstart', function(event){
-            $$("_cancel").style.backgroundColor = opt.activebg;
-            $$("_cancel").addEventListener('touchend', popHide);
-        });
-        $$("_cancel").addEventListener('touchmove', function(event){
-            $$("_cancel").style.backgroundColor = opt.bg;
-            $$("_cancel").removeEventListener("touchend",popHide);
-        });    
+        $$("popBox").addEventListener('touchend', popHide);  
     };
     function popFn(opt){
         showPop(opt);
     };
+
     function showHint(str){
-        hintCon = '<div class="hint">'+(str||"hint show~")+'</div>';
+        var hintCon = '<div class="hintOut"><div class="hint">'+(str||"hint show~")+'</div></div>';
         if($$("hintBox")){
             $$("hintBox").className = "hintBox";
             $$("hintBox").style.display = "block";
@@ -115,7 +113,7 @@
             div.innerHTML = hintCon;
             document.body.appendChild(div);
         }
-        setTimeout(function(){
+        setTimeout(function(){//显示1s后消失
             $$("hintBox").className = "hintBox hide";
             setTimeout(function(){$$("hintBox").style.display = "none";}, 300);
         }, 1000);

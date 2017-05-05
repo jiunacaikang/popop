@@ -12,19 +12,23 @@
     transition:all 0.3s;
     -webkit-transition:all 0.3s;
 }
+.hintOut{
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    left:0;
+    bottom:55px;
+    text-align: center;
+    color:#fff;
+}
 .hint {
+    display: inline-block;
     height: 20px;
     padding:10px 15px; 
-    width: 45%;
-    position: absolute;
-    bottom:55px;
-    left:50%;
+    min-width: 30%;
+    max-width: 60%;
     border-radius: 30px;
     background: rgba(0, 0, 0, .5);
-    color:#fff;
-    text-align: center;
-    transform: translate(-50%,0);
-    -webkit-transform: translate(-50%,0);
 }
 .popBox {
     width: 100%;
@@ -43,39 +47,37 @@
 .pop {
     width: 75%;
     max-width: 320px;
-    height: 187px;
+    height: 188px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 20%;
+    left: 0;
+    right:0;
+    margin:auto;
     overflow: hidden;
     border-radius: 10px;
-    transform: translate(-50%, -70%);
-    -webkit-transform: translate(-50%, -70%);
-    transform-origin: 0% 0%;
-    -webkit-transform-origin: 0% 0%;
     animation: pop 0.35s;
     -webkit-animation: pop 0.35s;
 }
 @keyframes pop {
     0% {
-        transform: scale(0) translate(-50%, -70%);
+        transform: scale(0);
     }
     80% {
-        transform: scale(1.15) translate(-50%, -70%);
+        transform: scale(1.15);
     }
     100% {
-        transform: scale(1) translate(-50%, -70%);
+        transform: scale(1);
     }
 }
 @-webkit-keyframes pop {
     0% {
-        -webkit-transform: scale(0) translate(-50%, -70%);
+        -webkit-transform: scale(0);
     }
     80% {
-        -webkit-transform: scale(1.15) translate(-50%, -70%);
+        -webkit-transform: scale(1.15);
     }
     100% {
-        -webkit-transform: scale(1) translate(-50%, -70%);
+        -webkit-transform: scale(1);
     }
 }
 .pop-top {
@@ -108,18 +110,19 @@
 }
 .pop-button a {
     height: 54px;
-    display: block;
     line-height: 54px;
     text-align: center;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255,255,255,0.9);
     color: #666;
     font-size: 18px;
     border-radius:0 0 10px 0;
+    width: 48%;
+    float: left;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     flex: 1;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
 }
 .pop-button a._confirm {
     margin-right: 1px;

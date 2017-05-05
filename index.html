@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0">
@@ -23,7 +22,7 @@
 
 <body>
     <button id='btn0'>show hint</button>
-    <button id="btn">show pop</button>
+    <button id="btn">show pop</button>   
 </body>
 <script type="text/javascript" src="src/hintPop.js"></script>   
 <script type="text/javascript">
@@ -42,36 +41,31 @@
         } else {
             return false;
         }
-    }
+    } 
 
     if(!isMobile()){
-        hintPop.pop({
-            content:"请切换为移动浏览器模式"
-        });
+        hintPop.hint("请切换为移动浏览器模式");
     }else{
         hintPop.pop({
             content:"我是一个弹窗"
         });
     }
-    
-
-    hintPop.hint();
-
+    var hint = ['我是一个hint','我是一个hint提示~~~~~','我是一个hint!我是一个hint!','hint','提示~~']
     btn0.onclick = function(){
-        hintPop.hint("我是一个hint提示~~")
+        hintPop.hint(hint[Math.floor(Math.random()*5)])
     }
 
     btn.onclick = function(){
-        hintPop.pop({
-            title:'button title',
-            content:"点击button点击button点击button点击button",
-            confirm:function(){
-                console.log("点击button后 点击了确定");
-            },
-            cancel:function(){
-                console.log("点击button后 点击了取消");
-            }
-        });
+       hintPop.pop({
+           title:'button title',
+           content:"点击button点击button点击button点击button",
+           confirm:function(){
+               console.log("点击button后 点击了确定");
+           },
+           cancel:function(){
+               console.log("点击button后 点击了取消");
+           }
+       });
     }
 </script>
 </html>

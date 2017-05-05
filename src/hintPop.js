@@ -13,33 +13,20 @@
     function $$(id){
         return document.getElementById(id);
     };
-    var dftOpt= {
-        title:"操作提示",           //弹框 title
-        content:"显示Pop弹框",  //弹框 内容
-        activebg:"#dedede",         //弹框 确定/取消 背景active颜色
-        bg:"rgba(255,255,255,0.9)", //弹框 确定/取消 背景颜色
-        url: "javascript:;",        //弹框 点击确定 链接跳转
-        target:"_self",             //弹框 连接跳转方式
-        confirm:function(){         //弹框 点击确认回调函数
-            console.log("confirm");
-        },
-        cancel:function(){          //弹框 点击取消回调函数 
-            console.log("cancel");
-        }
-    };
+    var dftOpt= {};
     function showPop(opt){
         dftOpt = {
-            title:opt&&opt.title||"操作提示",
-            content:opt&&opt.content||"显示hintPop弹框",
-            activebg:opt&&opt.activebg||"#dedede",
-            bg:opt&&opt.bg||"rgba(255,255,255,0.9)",
-            url:opt&&opt.url|| "javascript:;",
-            target:opt&&opt.target||"_self",
-            confirm:opt&&opt.confirm||function(){
-                console.log("confirm");
+            title:opt&&opt.title||"操作提示",           //弹框 title
+            content:opt&&opt.content||"显示hintPop弹框",//弹框 内容
+            activebg:opt&&opt.activebg||"#dedede",      //弹框 确定/取消 背景active颜色
+            bg:opt&&opt.bg||"rgba(255,255,255,0.9)",    //弹框 确定/取消 背景颜色
+            url:opt&&opt.url|| "javascript:;",          //弹框 点击确定 链接跳转
+            target:opt&&opt.target||"_self",            //弹框 连接跳转方式
+            confirm:opt&&opt.confirm||function(){       //弹框 点击确认回调函数
+                showHint("您点击了confirm");
             },
-            cancel:opt&&opt.cancel||function(){
-                console.log("cancel");
+            cancel:opt&&opt.cancel||function(){         //弹框 点击取消回调函数 
+                showHint("您点击了confirm");
             }
         };
         var popCon ='<div class="pop">'
@@ -99,7 +86,6 @@
     function popFn(opt){
         showPop(opt);
     };
-
     function showHint(str){
         var hintCon = '<div class="hintOut"><div class="hint">'+(str||"hint show~")+'</div></div>';
         if($$("hintBox")){

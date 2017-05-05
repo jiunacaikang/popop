@@ -15,7 +15,7 @@
     };
     var dftOpt= {
         title:"操作提示",           //弹框 title
-        content:"显示hintPop弹框",  //弹框 内容
+        content:"显示Pop弹框",  //弹框 内容
         activebg:"#dedede",         //弹框 确定/取消 背景active颜色
         bg:"rgba(255,255,255,0.9)", //弹框 确定/取消 背景颜色
         url: "javascript:;",        //弹框 点击确定 链接跳转

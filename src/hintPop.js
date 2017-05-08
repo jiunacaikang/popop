@@ -14,6 +14,7 @@
         return document.getElementById(id);
     };
     var dftOpt= {};
+    var timer = null,timerC = null;
     function showPop(opt){
         dftOpt = {
             title:opt&&opt.title||"操作提示",           //弹框 title
@@ -87,7 +88,7 @@
         showPop(opt);
     };
     function showHint(str){
-        var hintCon = '<div class="hintOut"><div class="hint">'+(str||"hint show~")+'</div></div>';
+        var hintCon = '<div class="hint">'+(str||"hint show~")+'</div>';
         if($$("hintBox")){
             $$("hintBox").className = "hintBox";
             $$("hintBox").style.display = "block";
@@ -99,9 +100,13 @@
             div.innerHTML = hintCon;
             document.body.appendChild(div);
         }
-        setTimeout(function(){//显示1s后消失
+        clearTimeout(timer);
+        clearTimeout(timerC);
+        timer = null;
+        timerC = null;
+        timer = setTimeout(function(){//显示1s后消失
             $$("hintBox").className = "hintBox hide";
-            setTimeout(function(){$$("hintBox").style.display = "none";}, 300);
+            timerC = setTimeout(function(){$$("hintBox").style.display = "none";}, 300);
         }, 1000);
     };
     function hintFn(str){

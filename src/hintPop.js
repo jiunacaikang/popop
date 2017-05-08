@@ -37,6 +37,7 @@
                         +'</div>'
                         +'<div class="pop-button">'
                             +'<a href="'+dftOpt.url+'" id="_confirm" class="_confirm" target="'+dftOpt.target+'">确定</a>'
+                            +'<i class="line"></i>'
                             +'<a href="javascript:;" id="_cancel" class="_cancel">取消</a>'
                         +'</div>'
                     +'</div>';

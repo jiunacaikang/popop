@@ -3,24 +3,24 @@
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    -webkit-touch-callout: none;  
+    -webkit-user-select: none;  
+    -khtml-user-select: none;  
+    -moz-user-select: none;  
+    -ms-user-select: none;  
+    user-select: none; 
 }
 /* 去除iPhone中默认的input样式 */
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
-button {
--webkit-appearance: none;
-}
+button {-webkit-appearance: none;}
 input,textarea{outline: none;}
 input[type="submit"],
-
 input[type="reset"],
-
 input[type="button"],
-
 input{-webkit-appearance:none; resize: none;}
-
-button{background: none;border:none;outline: none;font-family:HiraginoSansGB W3,microsoft yahei,Tahoma,Arial,sans-serif;}
+button{background: none;border:none;outline: none;}
 /* 取消链接高亮  */
 body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,a,img,button,form,table,th,tr,td,tbody,article, 
 aside, details,figcaption,figure,footer,header,hgroup, menu,nav,section{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0); }
@@ -28,44 +28,17 @@ aside, details,figcaption,figure,footer,header,hgroup, menu,nav,section{ -webkit
 article, aside, details,figcaption,figure,footer,header,hgroup, menu,nav,section {
 display: block;
 }
-/* 图片自适应 */
-img {display:block;
-max-width: 100%;
-height: auto;
-width:auto\9; /* ie8 */
--ms-interpolation-mode:bicubic;/*为了照顾ie图片缩放失真*/
-}
 /* 初始化 */
 body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,a,img,button,form,table,th,tr,td,tbody,article, 
-aside, details,figcaption,figure,footer,header,hgroup, menu,nav,section{margin:0; padding:0; border:none;}
-body{font-family:HiraginoSansGB W3,microsoft yahei,Tahoma,Arial,sans-serif; color:#666;background: #f3f3f3; font-size: 12px;}
+aside, details,figcaption,figure,footer,header,hgroup, menu,nav,section{margin:0; padding:0; border:none;font-family:microsoft yahei;}
+body{color:#666;background: #f3f3f3; font-size: 12px;}
 em,i{font-style:normal;}
 strong{font-weight: normal;}
-.clearfix:after{content:""; display:block; visibility:hidden; height:0; clear:both;}
-.clearfix{zoom:1;}
-a{text-decoration:none; font-family:HiraginoSansGB W3,microsoft yahei,Tahoma,Arial,sans-serif;font-size: 12px;}
+a{text-decoration:none;font-size: 12px;outline: none;}
 a:visited{text-decoration:none;}
 a:hover{text-decoration:none;}
-a{outline: none;}
 ul,ol{list-style:none;}
-p{font-family:HiraginoSansGB W3,microsoft yahei,Tahoma,Arial,sans-serif; font-size: 12px;}
-h1, h2, h3, h4, h5, h6{ font-size:100%; font-family:HiraginoSansGB W3,microsoft yahei,Tahoma,Arial,sans-serif;}
-img{border: none;}
-.scope{min-width:320px; max-width:540px;}
-
-/* 通用基样式 */
-.t-css{width:100%; overflow:hidden; display:table; }
-.t-img-css{display:block; width:100%; height:auto; overflow:hidden;} 
-.t-row-css{display:table-row; width:100%; }
-.t-cell-css{display:table-cell; overflow:hidden; vertical-align:middle; text-align:center; height:100%; box-sizing:border-box; }
-.rm-a-css{-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
-.set-img-css{display:block; width:100%; height:auto; overflow:hidden;}
-.base-box-css{width:100%; overflow:hidden;}
-
 /* 清除浮动 */
 .clearfix:after{content:""; display:block; visibility:hidden; height:0; clear:both;}
 .clearfix{zoom:1;}
 
-/* 自定义 */
-.redC{color:#f2414f!important;}
-/* 提示框样式start  */

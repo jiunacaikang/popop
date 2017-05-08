@@ -1,6 +1,6 @@
 # hint-pop
 移动端 hint-pop plugin   
-demo 地址：<a href="https://jiunacaikang.github.io/hint-pop/" target="_blank">hint-pop</a>   
+demo 地址：<a href="https://jiunacaikang.github.io/hint-pop/" target="_blank">hint-pop</a>   
 使用方法：  
 ```javascript
  hintPop.pop({

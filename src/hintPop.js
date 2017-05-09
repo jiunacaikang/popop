@@ -9,7 +9,7 @@
         // 浏览器全局变量
         root.hintPop = factory();
     }
-}(window, function () {
+}(this, function () {
     function $$(id){
         return document.getElementById(id);
     };

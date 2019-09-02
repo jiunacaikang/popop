@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../src/css/index.css">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            outline: none;
+            -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+        }
+        button {
+            width: 200px;
+            height: 44px;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #fff;
+            margin: 50px auto;
+            background: #ddd;
+            box-shadow: 1px 1px 3px #555;
+        }
+    </style>
+</head>
+
+<body>
+    <button id='btn0'>show toast</button>
+    <button id="btn">show pop</button>
+</body>
+<script type="text/javascript" src="../src/index.js"></script>
+<script type="text/javascript">
+    var toast = ['我是一个toast', '我是一个toast提示~~~~~', '我是一个toast!我是一个toast!', 'toast', '提示~~']
+    btn0.onclick = function () {
+        popop.toast(toast[Math.floor(Math.random() * 5)])
+    }
+    btn.onclick = function () {
+        popop.pop({
+            title: 'button title',
+            content: "点击button点击button点击button点击button",
+            confirm: function () {
+                popop.toast("点击button后 点击了确定");
+            },
+            cancel: function () {
+                popop.toast("点击button后 点击了取消");
+            }
+        });
+    }
+</script>
+
+</html>

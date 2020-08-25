@@ -30,9 +30,22 @@
         isMoile = _isMobile();
         $$("popBox") && bindClick(dftOpt);
     }
+
+    let caller;
     function pop(opt) {
+        caller = this;
+        if (typeof opt === 'string') {
+            var content = opt;
+            opt = {
+                content:content
+            }
+        }
+
+
         dftOpt = {
             root:'',
+            type: opt && opt.type || "default",                             //弹框类型
+            placeholder: opt && opt.placeholder || "请输入",                //placeholder
             title: opt && opt.title || "操作提示",                           //弹框 title
             content: opt && opt.content || "显示popop弹框",                    //弹框 内容
             activebg: opt && opt.activebg || "rgba(225,225,225,0.8)",        //弹框 确定/取消 背景active颜色
@@ -47,22 +60,30 @@
                 //toast("您点击了cancel");
             }
         };
-        var btnHtml = '';
+
+        var popCon = '', conInfo = '', btnHtml = '';
         if (dftOpt.use_a) {
-            btnHtml = `<a href="${dftOpt.url}" id="_confirm" class="_confirm _btn" target="${dftOpt.target}">确定</a>
-                       <a href="javascript:;" id="_cancel" class="_cancel _btn">取消</a>`;
+            btnHtml = '<a href="javascript:;" id="_cancel" class="_cancel _btn">取消</a>'+
+                    '<a href="' + dftOpt.url + '" id="_confirm" class="_confirm _btn" target="'+ dftOpt.target +'">确定</a>';
         } else {
-            btnHtml = `<span id="_confirm" class="_confirm _btn">确定</span><span id="_cancel" class="_cancel _btn">取消</span>`;
+            btnHtml = '<span id="_cancel" class="_cancel _btn">取消</span><span id="_confirm" class="_confirm _btn">确定</span>';
         }
-        var popCon = `<div class="_pop">
-                        <div class="_pop-top">
-                            <div class="_pop-title">${dftOpt.title}</div>
-                            <div class="_pop-con">
-                                <div class="_pop-con-text">${dftOpt.content}</div> 
-                            </div>        
-                        </div>
-                        <div class="_pop-button">${btnHtml}</div>
-                    </div>`;
+
+        if (dftOpt.type === 'prompt') {
+            conInfo = '<input id="_pop-con-input" class="_pop-con-input" type="text" placeholder="'+ dftOpt.placeholder +'" />'
+            setTimeout(() => { $$("_pop-con-input").focus() },30)
+        } else {
+            conInfo = '<div class="_pop-con-text">' + dftOpt.content+ '</div>'
+        }
+
+        popCon = '<div class="_pop">'+
+                    '<div class="_pop-top">'+
+                        '<div class="_pop-title">'+ dftOpt.title +'</div>'+
+                        '<div class="_pop-con">'+ conInfo + '</div>'+
+                    '</div>'+
+                    '<div class="_pop-button">'+ btnHtml +'</div>'+
+                '</div>'
+
         if ($$("popBox")) {//存在就不添加了
             $$("popBox").style.display = "block";
             $$("popBox").className = "_popBox";
@@ -75,24 +96,36 @@
             div.innerHTML = popCon;
             document.body.appendChild(div);
         }
-        $$(dftOpt.root) && ($$(dftOpt.root).className = 'blur');
+        
+        $$(dftOpt.root) && ($$(dftOpt.root).className = '_blur');
         window.onhashchange = () => {//监听hashchange
             $$("popBox").style.display = 'none';
             $$(dftOpt.root) && ($$(dftOpt.root).className = '');
         };
         bindClick(dftOpt);
     };
+
+    function prompt(opt) {
+        opt.type = 'prompt';
+        pop.call(this, opt)
+    };
+
     function popHide(event) {
         var useable = $$("popBox").getAttribute("useable");
         if (useable === "true") {
             $$("popBox").setAttribute("useable", false);
             if (event.target.id === "_confirm") {
                 if (typeof (dftOpt.confirm) == "function") {
-                    dftOpt.confirm();
+                    if (dftOpt.type === 'prompt') {
+                        var inputValue = $$("_pop-con-input").value;
+                        dftOpt.confirm.call(caller,inputValue) 
+                    } else {
+                        dftOpt.confirm.call(caller)
+                    }
                 }
             } else if (event.target.id === "_cancel") {
                 if (typeof (dftOpt.cancel) == "function") {
-                    dftOpt.cancel();
+                    dftOpt.cancel.call(caller);
                 }
             } else {
                 $$("popBox").setAttribute("useable", true);
@@ -171,10 +204,10 @@
             var div = document.createElement("div");
             div.setAttribute("id", "loadingBox");
             div.setAttribute("class", "_loadingBox");
-            div.innerHTML = `<div class="_loading">
-                                <div class="_load"></div>
-                                <p>loading...</p>
-                            </div>`;
+            div.innerHTML = '<div class="_loading">'+
+                                '<div class="_load"></div>'+
+                                '<p>loading...</p>'+
+                            '</div>';
             document.body.appendChild(div);
         }
         $$("loadingBox").addEventListener("touchmove", event => {
@@ -190,6 +223,7 @@
     return {
         toast: toast,    //hint方法
         pop: pop,      //pop方法
+        prompt: prompt, //输入弹框
         loading: loading,    //loading
         loadingClose: loadingCloss  //loadingClose
     };

@@ -37,16 +37,26 @@
         popop.toast(toast[Math.floor(Math.random() * 5)])
     }
     btn.onclick = function () {
-        popop.pop({
-            title: 'button title',
-            content: "点击button点击button点击button点击button",
-            confirm: function () {
-                popop.toast("点击button后 点击了确定");
-            },
-            cancel: function () {
-                popop.toast("点击button后 点击了取消");
-            }
-        });
+        var prompt =  Math.random() < 0.5;
+
+        if(prompt) {
+            popop.prompt({
+                confirm: function (value) {
+                    popop.toast("输入了" + value);
+                },
+            });
+        } else {
+            popop.pop({
+                title: 'button title',
+                content: "点击button点击button点击button点击button",
+                confirm: function () {
+                    popop.toast("点击button后 点击了确定");
+                },
+                cancel: function () {
+                    popop.toast("点击button后 点击了取消");
+                }
+            });
+        }
     }
 </script>
 

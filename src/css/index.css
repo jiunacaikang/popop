@@ -35,6 +35,11 @@
   -webkit-animation: _load 1.1s infinite linear;
   animation: _load 1.1s infinite linear;
 }
+
+._blur {
+    filter: blur(5px);
+}
+
 @-webkit-keyframes _load {
   0% {
     -webkit-transform: rotate(0deg);
@@ -71,7 +76,7 @@
     min-height: 20px;
     padding:10px 15px; 
     min-width: 100px;
-    max-width: 160px;
+    max-width: 50%;
     border-radius: 20px;
     -webkit-border-radius: 20px;
     background: rgba(0, 0, 0, .75);
@@ -177,10 +182,23 @@
     overflow: hidden;
     white-space:normal;
 }
+
+._pop-top ._pop-con-input {
+    width: 60%;
+    height: 36px;
+    padding: 0 10px;
+    margin-top: 15px;
+    line-height: 36px;
+    font-size: 14px;
+    background: none;
+    border:1px solid #ccc;
+    border-radius: 5px;
+}
+
 ._pop-button {
     width: 100%;
     height: 44px;
-    margin-top: 1px;
+    margin-top: 1.5px;
     border-radius:0 0 10px 10px;
     -webkit-border-radius:0 0 10px 10px;
     overflow: hidden;
@@ -200,6 +218,6 @@
     -webkit-user-select: none;
     user-select: none;
 }
-._pop-button ._btn._cancel {
+._pop-button ._btn._confirm {
     margin:0 -1px 0 1px;
 }
